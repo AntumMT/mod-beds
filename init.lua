@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Minetest :: Beds Redux Mod v1.0 (beds)
+-- Minetest :: Beds Redux Mod (beds)
 --
 -- See README.txt for licensing and other information.
 -- Copyright (c) 2016-2020, Leslie E. Krause
@@ -11,7 +11,7 @@ beds = { }
 
 local config = minetest.load_config( {
 	filename = "player_spawns.txt",
-	spawn_pos = minetest.setting_get_pos( "static_spawnpoint" ),
+	spawn_pos = minetest.setting_get_pos( "static_spawnpoint" ) or vector.new( )
 } )
 local world_path = minetest.get_worldpath( )
 local player_sleeping_count = 0
@@ -43,7 +43,7 @@ local function import_spawns( )
 		export_spawns( )
 		file = io.open( world_path .. "/" .. config.filename, "r" )
 		if not file then
-			error( "Could not load player spawn data." )
+			error("Could not load player spawn data.")
 		end
 	end
 
@@ -107,6 +107,7 @@ local function open_sleep_viewer( name, pos )
 	local function get_formspec( )
 		local player_count = #minetest.get_connected_players( )
 		local formspec = "size[12,15;true]" ..
+			"no_prepend[]" ..
 			"bgcolor[#080808BB;true]" ..
 			"image[4.5,5.5;4.0,3.8;beds_sleeping.png]" ..
 			"button_exit[3.0,12.0;2.5,0.7;leave;Wake Up]" ..
@@ -664,3 +665,13 @@ beds.register_bed( "beds:bed", {
 -------------------
 
 import_spawns( )
+
+-- compatibility for Minetest S3 engine
+
+if minetest.get_modpath( "spawn" ) then
+	minetest.log( "warning", "Spawn mod can override the functionality of Beds Redux" )
+end
+
+if not vector.offset or not vector.offset_y or not vector.origin then
+        dofile( minetest.get_modpath( "beds" ) .. "/compatibility.lua" )
+end
