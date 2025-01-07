@@ -1,13 +1,16 @@
 Beds Redux Mod v1.0
 By Leslie E. Krause
 
-Books Redux is a complete rewrite of the Beds mod from Minetest Game. That's right, beds 
+Beds Redux is a complete rewrite of the Beds mod from Minetest Game. That's right, beds
 got a complete makeover from the ground up!
 
-While striving to improve the beds mod for the JT2 server, I realized that the original 
-source code was becoming too unmanageable. So in January, I decided to start from scratch 
-developing Beds Redux with a fully revamped API and many new and exciting features both 
+While striving to improve the beds mod for the JT2 server, I realized that the original
+source code was becoming too unmanageable. So in January, I decided to start from scratch
+developing Beds Redux with a fully revamped API and many new and exciting features both
 for developers and players alike.
+
+Note: Since Beds Redux overrides the builtin respawn function of Minetest, it is strongly
+recommended to disable the Spawn mod from Minetest Game in order to avoid conflicts.
 
 For more information, please visit the forum:
 https://forum.minetest.net/viewtopic.php?f=9&t=24439
@@ -157,7 +160,7 @@ Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
 	/sounds/respawn_whoosh.ogg
 	by tim.kahn
 	obtained from https://freesound.org/people/tim.kahn/sounds/128590/
-	modified by sorcerykid	
+	modified by sorcerykid
 
 You are free to:
 Share — copy and redistribute the material in any medium or format.
